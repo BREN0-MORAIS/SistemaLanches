@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace AppLanchesWeb
 {
-
     public class Program
     {
         public static void Main(string[] args)
