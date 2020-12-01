@@ -1,4 +1,6 @@
 using AppLanchesWeb.Context;
+using AppLanchesWeb.Repository;
+using AppLanchesWeb.Repository.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,11 @@ namespace AppLanchesWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Registrando as Interfaces para injeção de dependencias
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<ILancheRepository, LancheRepository>();
+
+
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllersWithViews();
         }
