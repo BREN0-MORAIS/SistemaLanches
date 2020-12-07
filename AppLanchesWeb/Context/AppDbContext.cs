@@ -14,5 +14,8 @@ namespace AppLanchesWeb.Context
         public DbSet<Lanche> Lanches { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
 
+
+      
+
     }
 }
