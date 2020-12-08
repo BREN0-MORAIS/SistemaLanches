@@ -1,0 +1,16 @@
+﻿@model Lanche
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail" class="img-rounded" alt="">
+                    <img src="@Model.ImagemUrl" />
+                </div>
+                <div class="caption">
+                    <h3>Preço: @Model.Preco.ToString("c")</h3>
+                    <h3>Lanche : @Model.Nome</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

@@ -1,13 +1,10 @@
-﻿@model IEnumerable<AppLanchesWeb.Models.Lanche>
+﻿@model LancheListViewModel
+<div><h2>@Model.CategoriaAtual</h2></div>
 
-<div><h2>Todos os Lanches</h2></div>
 
-
-@foreach(var lanche in Model)
+@foreach (var lanche in Model.Lanches)
 {
-    <div>
-        <h4>Lanche : @lanche.Nome</h4>
-        <p><img src="@lanche.ImagemUrl"/></p>
-        <p>Preço: @lanche.Preco.ToString("c")</p>
-    </div>
+
+    @*@Html.Partial("_LancheResumo", lanche);*@ 
+    <partial name="_LancheResumo" for="@lanche"/>
 }

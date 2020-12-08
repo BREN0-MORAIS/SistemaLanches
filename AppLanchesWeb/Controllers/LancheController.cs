@@ -1,4 +1,5 @@
 ﻿using AppLanchesWeb.Repository.Interface;
+using AppLanchesWeb.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,13 @@ namespace AppLanchesWeb.Controllers
 
         public IActionResult Index()
         {
-            var lanches = _lancheRepository.lanches;
-            return View(lanches);
+            //var lanches = _lancheRepository.lanches;
+            //return View(lanches);
+            var lancheListViewModel = new LancheListViewModel();
+
+            lancheListViewModel.Lanches = _lancheRepository.lanches;
+            lancheListViewModel.CategoriaAtual = "Categoria Atual";
+            return View(lancheListViewModel);
         }
     }
 }
