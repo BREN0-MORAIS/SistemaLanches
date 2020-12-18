@@ -18,6 +18,7 @@ namespace AppLanchesWeb
     {
         public Startup(IConfiguration configuration)
         {
+            
             Configuration = configuration;
         }
 
@@ -26,11 +27,15 @@ namespace AppLanchesWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Registrando as Interfaces para injeção de dependencias
+            //adiciona a implementação padrão do IDistributedCache [Sessão]
+            services.AddDistributedMemoryCache();
+            //adicionando  a seção [Sessão]
+            services.AddSession();
+            //Registrando as Interfaces para injeção de dependencias [Injeção de Dependencias]
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<ILancheRepository, LancheRepository>();
 
-
+           // configurando conexão com o Bajco de dados  que acessa o Metodo Json  que vai acessar a Default que defin[Conexão]  
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllersWithViews();
         }
@@ -38,6 +43,10 @@ namespace AppLanchesWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            //usando a Sessão [Sessão]
+            app.UseSession();
+
             //verifica se estou em anbiente de desenvolvimento se sim me mostra uma exeção mais detalahada
             if (env.IsDevelopment())
             {

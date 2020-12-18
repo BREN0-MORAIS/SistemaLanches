@@ -1,0 +1,37 @@
+﻿
+[Documentação->Configurando Sessão]
+
+
+************Classe Startup***************
+
+public void ConfigureServices(IServiceCollection services)
+{
+//Adicioona uma implementação Padrão de IDistribuedCache
+
+services.AddDistributesMemoryCache();
+services.addSession()
+
+}
+
+public void configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+app.UseSession();
+
+app.Run(async(context)=>{await context.Response.WriteAsync(msg.GetMensagem())});
+}
+
+usando os Recursos da Sessão
+=============================
+
+Definindo onde sera armazenar os dados da Sessão;
+
+exemplo:
+--------
+Declarando as Variaveis:
+
+const string SessionKeyNome = "_nome";
+const string SessionKeyIdade = "_nome";
+
+Atribuindo o Valor:
+HttpContext.Session.SetString(SessionKeyNome,"Breno");
+HttpContext.Session.SetString(SessionKeyIdade,20);
